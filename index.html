@@ -1,4 +1,5 @@
-[24.11.2026 14:11] Дмитро: <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -28,7 +29,7 @@ const cards=[
 {name:'Эрен',race:'Человек',magic:[],weapon:['Пистолет','Пулемёт','Миниган','Нож'],style:['Военный']},
 {name:'Годжо',race:'Человек',magic:['Безграничность'],weapon:['Проклятая двойная катана'],effect:'Усиление',style:['Сверхчеловек'],special:'Шесть глаз'},
 {name:'Милан',race:'Высший драконорожденный',magic:['Порталы','Огонь'],weapon:['Сердце дракона','Проклятая двойная катана'],effect:'Антирегенерация',style:['Сверхчеловек']},
-[24.11.2026 14:11] Дмитро: {name:'Хаус',race:'Высший драконорожденный',magic:['Огонь'],weapon:[],style:['Сверхчеловек']},
+[24.11.2026 14:19] Дмитро: {name:'Хаус',race:'Высший драконорожденный',magic:['Огонь'],weapon:[],style:['Сверхчеловек']},
 {name:'Лиза',race:'Гибрид A',magic:['Вода'],weapon:['Якорь акулы'],style:['Сверхчеловек'],special:'Магический гибрид'},
 {name:'Дэн',race:'Обычный ангел',magic:['Лёд'],weapon:['Ледяное копьё'],special:'Ничего'}];
 const rand=p=>Math.random()*100<p;const pick=a=>a[Math.floor(Math.random()*a.length)];const shuffle=a=>[...a].sort(()=>Math.random()-.5);const fmt=n=>Number(n).toLocaleString('ru-RU',{maximumFractionDigits:2});
@@ -52,7 +53,7 @@ function generate(){
  const hologramPair=weapon.includes('Голографическая коса')&&weapon.includes('Голографическая панель');if(hologramPair)weaponScore*=2;
  const artScore=art.reduce((s,n)=>s+(artifacts.find(x=>x[0]===n)?.[2]0),0),styleScore=style.length?(styles.find(x=>x[0]===style[0])?.[2]0):100;
  const specialScore=special==='Магический гибрид'?(race[0].startsWith('Гибрид')?30000:0):(specialTech.find(x=>x[0]===special)?.[2]||0);
-[24.11.2026 14:11] Дмитро: const base=raceScore+magicScore+weaponScore+artScore+styleScore+specialScore;
+[24.11.2026 14:19] Дмитро: const base=raceScore+magicScore+weaponScore+artScore+styleScore+specialScore;
  const name=weapon.length&&magic.includes('Порталы')?'Милан':!weapon.length&&magic.includes('Огонь')?'Хаус':'Безымянный';
  const results=cards.map(c=>matchCard(c,person)),twoMatchCards=results.filter(r=>r.hits===2).length,bestHits=Math.max(0,...results.map(r=>r.hits)),hasFull=results.some(r=>r.full);
  const cardBoost=hasFull?10:bestHits>=4?5:bestHits>=3?3:1,groupBoost=twoMatchCards>=2?1.5:1,total=base*cardBoost*groupBoost;
@@ -65,4 +66,3 @@ function generate(){
 }
 document.getElementById('generate').addEventListener('click',generate);
 </script></body></html>
-
